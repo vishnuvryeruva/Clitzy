@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vishnuworldModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Messages" Relationship="Self.FK_Message_Account" FromRole="Account" ToRole="Message" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Account" FromRole="Account" ToRole="Orders" />
+    <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Account" FromRole="Account" ToRole="Review" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="VendorId" Type="Int32" />
+    <NavigationProperty Name="Category1" Relationship="Self.FK_Category_Category" FromRole="Category" ToRole="Category1" />
+    <NavigationProperty Name="Category2" Relationship="Self.FK_Category_Category" FromRole="Category1" ToRole="Category" />
+    <NavigationProperty Name="Vendor" Relationship="Self.FK_Category_Vendor" FromRole="Category" ToRole="Vendor" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="MemberShip">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Month" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="MemberShipVendors" Relationship="Self.FK_MemberShipVendor_MemberShip" FromRole="MemberShip" ToRole="MemberShipVendor" />
+  </EntityType>
+  <EntityType Name="MemberShipVendor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemerShipId" Type="Int32" Nullable="false" />
+    <Property Name="VendorId" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="MemberShip" Relationship="Self.FK_MemberShipVendor_MemberShip" FromRole="MemberShipVendor" ToRole="MemberShip" />
+    <NavigationProperty Name="Vendor" Relationship="Self.FK_MemberShipVendor_Vendor" FromRole="MemberShipVendor" ToRole="Vendor" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreation" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="VendorId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Message_Account" FromRole="Message" ToRole="Account" />
+    <NavigationProperty Name="Vendor" Relationship="Self.FK_Message_Vendor" FromRole="Message" ToRole="Vendor" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DateCreation" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="VendorId" Type="Int32" Nullable="false" />
+    <Property Name="OrderStatusId" Type="Int32" Nullable="false" />
+    <Property Name="PaymentId" Type="Int32" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Orders_Account" FromRole="Orders" ToRole="Account" />
+    <NavigationProperty Name="OrderStatu" Relationship="Self.FK_Orders_OrderStatus" FromRole="Orders" ToRole="OrderStatus" />
+    <NavigationProperty Name="Payment" Relationship="Self.FK_Orders_Payment" FromRole="Orders" ToRole="Payment" />
+    <NavigationProperty Name="Vendor" Relationship="Self.FK_Orders_Vendor" FromRole="Orders" ToRole="Vendor" />
+    <NavigationProperty Name="OrdersDetails" Relationship="Self.FK_OrdersDetail_Orders" FromRole="Orders" ToRole="OrdersDetail" />
+  </EntityType>
+  <EntityType Name="OrdersDetail">
+    <Key>
+      <PropertyRef Name="OrderId" />
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrdersDetail_Orders" FromRole="OrdersDetail" ToRole="Orders" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_OrdersDetail_Product" FromRole="OrdersDetail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="OrderStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_OrderStatus" FromRole="OrderStatus" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Plug" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Payment" FromRole="Payment" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="Main" Type="Boolean" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Photo_Product" FromRole="Photo" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="VendorId" Type="Int32" Nullable="false" />
+    <Property Name="Views" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="OrdersDetails" Relationship="Self.FK_OrdersDetail_Product" FromRole="Product" ToRole="OrdersDetail" />
+    <NavigationProperty Name="Photos" Relationship="Self.FK_Photo_Product" FromRole="Product" ToRole="Photo" />
+    <NavigationProperty Name="Vendor" Relationship="Self.FK_Product_Vendor" FromRole="Product" ToRole="Vendor" />
+  </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="VendorId" Type="Int32" Nullable="false" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatePost" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Review_Account" FromRole="Review" ToRole="Account" />
+    <NavigationProperty Name="Vendor" Relationship="Self.FK_Review_Vendor" FromRole="Review" ToRole="Vendor" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Group" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TypeOfControl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Logo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_Category_Vendor" FromRole="Vendor" ToRole="Category" />
+    <NavigationProperty Name="MemberShipVendors" Relationship="Self.FK_MemberShipVendor_Vendor" FromRole="Vendor" ToRole="MemberShipVendor" />
+    <NavigationProperty Name="Messages" Relationship="Self.FK_Message_Vendor" FromRole="Vendor" ToRole="Message" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Vendor" FromRole="Vendor" ToRole="Orders" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Vendor" FromRole="Vendor" ToRole="Product" />
+    <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Vendor" FromRole="Vendor" ToRole="Review" />
+  </EntityType>
+  <Association Name="FK_Message_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Review" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Category_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Category_Vendor">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="0..1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberShipVendor_MemberShip">
+    <End Role="MemberShip" Type="Self.MemberShip" Multiplicity="1" />
+    <End Role="MemberShipVendor" Type="Self.MemberShipVendor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberShip">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MemberShipVendor">
+        <PropertyRef Name="MemerShipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberShipVendor_Vendor">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+    <End Role="MemberShipVendor" Type="Self.MemberShipVendor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MemberShipVendor">
+        <PropertyRef Name="VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Vendor">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_OrderStatus">
+    <End Role="OrderStatus" Type="Self.OrderStatu" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="OrderStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Payment">
+    <End Role="Payment" Type="Self.Payment" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="PaymentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Vendor">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrdersDetail_Orders">
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrdersDetail" Type="Self.OrdersDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrdersDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrdersDetail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="OrdersDetail" Type="Self.OrdersDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrdersDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Photo_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Photo">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Vendor">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Vendor">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+    <End Role="Review" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VishnuworldEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="MemberShips" EntityType="Self.MemberShip" />
+    <EntitySet Name="MemberShipVendors" EntityType="Self.MemberShipVendor" />
+    <EntitySet Name="Messages" EntityType="Self.Message" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OrdersDetails" EntityType="Self.OrdersDetail" />
+    <EntitySet Name="OrderStatus" EntityType="Self.OrderStatu" />
+    <EntitySet Name="Pages" EntityType="Self.Page" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="Photos" EntityType="Self.Photo" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Reviews" EntityType="Self.Review" />
+    <EntitySet Name="Settings" EntityType="Self.Setting" />
+    <EntitySet Name="Vendors" EntityType="Self.Vendor" />
+    <AssociationSet Name="FK_Message_Account" Association="Self.FK_Message_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Account" Association="Self.FK_Orders_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Account" Association="Self.FK_Review_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Category_Category" Association="Self.FK_Category_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Category1" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Category_Vendor" Association="Self.FK_Category_Vendor">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberShipVendor_MemberShip" Association="Self.FK_MemberShipVendor_MemberShip">
+      <End Role="MemberShip" EntitySet="MemberShips" />
+      <End Role="MemberShipVendor" EntitySet="MemberShipVendors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberShipVendor_Vendor" Association="Self.FK_MemberShipVendor_Vendor">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="MemberShipVendor" EntitySet="MemberShipVendors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Vendor" Association="Self.FK_Message_Vendor">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_OrderStatus" Association="Self.FK_Orders_OrderStatus">
+      <End Role="OrderStatus" EntitySet="OrderStatus" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Payment" Association="Self.FK_Orders_Payment">
+      <End Role="Payment" EntitySet="Payments" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Vendor" Association="Self.FK_Orders_Vendor">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrdersDetail_Orders" Association="Self.FK_OrdersDetail_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrdersDetail" EntitySet="OrdersDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrdersDetail_Product" Association="Self.FK_OrdersDetail_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrdersDetail" EntitySet="OrdersDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Photo_Product" Association="Self.FK_Photo_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Photo" EntitySet="Photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Vendor" Association="Self.FK_Product_Vendor">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Vendor" Association="Self.FK_Review_Vendor">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

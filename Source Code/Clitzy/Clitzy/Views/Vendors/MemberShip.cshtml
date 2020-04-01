@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using Clitzy.Security;
+@using System.Configuration;
+
+<link id="callCss" rel="stylesheet" href="~/Content/User/bootstrap/css/bootstrap.css" media="screen" />
+<link id="callCss" rel="stylesheet" href="~/Content/User/bootstrap/css/modern-business.css" media="screen" />
+
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("Index", "Home")">@Resources.UserTemplate.Home</a> <span class="divider">/</span></li>
+    <li class="active"> @Resources.Vendor.MemberShip</li>
+</ul>
+
+<h3>@Resources.Vendor.MemberShip</h3>
+<hr class="soft">
+
+<div class="row-fluid">
+
+    @foreach (var membership in ViewBag.memberships)
+    {
+        <div class="span3">
+            <div class="panel panel-primary text-center">
+                <div class="panel-heading">
+                    <h4 class="panel-title">@membership.Name</h4>
+                </div>
+                <div class="panel-body">
+                    <span class="price">@membership.Price.ToString("c")</span>
+                </div>
+                @Html.Raw(membership.Description)
+
+                @if (SessionPersister.account == null)
+                {
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="@Url.Action("Register", "Vendors")" class="btn btn-primary">@Resources.Vendor.Register</a>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <form id="form1" method="post" action="@ViewBag.PayPalSubmitUrl">
+
+                                <input type="hidden" name="item_name_1" value="@membership.Name" />
+                                <input type="hidden" name="item_number_1" value="@membership.Id" />
+                                <input type="hidden" name="amount_1" value="@membership.Price.ToString("0.##")" />
+                                <input type="hidden" name="quantity_1" value="1" />
+
+                                <input type="hidden" name="cmd" value="_cart" />
+                                <input type="hidden" name="business" value="@ViewBag.PayPalUsername" />
+                                <input type="hidden" name="return" value="@ViewBag.ReturnUrl" />
+                                <input type="hidden" name="upload" value="1" />
+                                <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" />
+                            </form>
+
+                        </li>
+                    </ul>
+                }
+
+            </div>
+
+        </div>
+    }
+
+</div>

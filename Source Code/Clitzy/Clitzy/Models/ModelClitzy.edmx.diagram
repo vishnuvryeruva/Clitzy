@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="12dca075b65e47b497da247163e6c433" Name="Diagram1">
+        <EntityTypeShape EntityType="vishnuworldModel.Account" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.Category" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.MemberShip" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.MemberShipVendor" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.Message" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.Order" Width="1.5" PointX="8" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.OrdersDetail" Width="1.5" PointX="10.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.OrderStatu" Width="1.5" PointX="5.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.Page" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.Payment" Width="1.5" PointX="5.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.Photo" Width="1.5" PointX="7.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.Product" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.Review" Width="1.5" PointX="6" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.Setting" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vishnuworldModel.Vendor" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="vishnuworldModel.FK_Message_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_Orders_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_Review_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_Category_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_Category_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_MemberShipVendor_MemberShip" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_MemberShipVendor_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_Message_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_Orders_OrderStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_Orders_Payment" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_Orders_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_OrdersDetail_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_OrdersDetail_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_Photo_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_Product_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="vishnuworldModel.FK_Review_Vendor" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

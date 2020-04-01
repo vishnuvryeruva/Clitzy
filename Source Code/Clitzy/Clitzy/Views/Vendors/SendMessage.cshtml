@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "SendMessage";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@model Clitzy.Models.Message
+
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("Index", "Home")">Home</a> <span class="divider">/</span></li>
+    <li class="active">Send Messages</li>
+</ul>
+<h3>Send Messages to @ViewBag.vendor.Name</h3>
+<hr class="soft">
+@using (Html.BeginForm("SendMessage", "Vendors", FormMethod.Post, new { @class = "form-inline" }))
+{
+    <fieldset>
+        @TempData["message"]
+        <div class="control-group">
+            <label class="control-label" for="input_1">Title</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Title, new { @class = "input-xxlarge", required = "required" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="textarea">Content</label>
+            <div class="controls">
+                @Html.TextAreaFor(model => model.Body, new { @class = "input-xxlarge", required = "required", rows = "3" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.VendorId);
+
+        <button type="submit" class="btn btn-primary">Send</button>
+        
+    </fieldset>
+}

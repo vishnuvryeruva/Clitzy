@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using Clitzy.Models;
+
+@{
+    Product product = (Product)ViewBag.product;
+    Photo mainPhoto = product.Photos.SingleOrDefault(p => p.Main && p.Status);
+}
+
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("Index", "home")">@Resources.UserTemplate.Home</a> <span class="divider">/</span></li>
+    <li><a href="@Url.Action("Category", "Product", new { id = ViewBag.product.CategoryId })">@Resources.Product.Category</a> <span class="divider">/</span></li>
+    <li class="active">@Resources.Product.Product_Details</li>
+</ul>
+<div class="row">
+    <div id="gallery" class="span3">
+        <a href="~/Content/User/Images/@(mainPhoto != null ? mainPhoto.Name : "no-image.png")" title="@product.Name">
+            <img src="~/Content/User/Images/@(mainPhoto != null ? mainPhoto.Name : "no-image.png")" style="width:100%" alt="@product.Name" />
+        </a>
+        <div id="differentview" class="moreOptopm carousel slide">
+            <div class="carousel-inner">
+                <div class="item active">
+                    @if (product.Photos != null && product.Photos.Count > 0)
+                    {
+                        foreach (var photo in product.Photos)
+                        {
+                            <a href="~/Content/User/Images/@photo.Name"> <img style="width:29%" src="~/Content/User/Images/@photo.Name"></a>
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="span6">
+        <h2>@product.Name  </h2>
+        <strong>
+            @Resources.Home.Sold_By: <a href="@Url.Action("Detail", "Vendors", new { id = product.Vendor.Id })"> @product.Vendor.Name</a>
+        </strong>
+        <hr class="soft">
+        <form class="form-horizontal qtyFrm" method="post">
+            <div class="control-group">
+                <label class="control-label"><span>@product.Price.ToString("c")</span></label>
+                <div class="controls">
+                    <input class="span1" placeholder="@Resources.Product.Qty" type="number" value="1">
+                    <a href="@Url.Action("Buy", "Cart", new { id = product.Id })" class="btn btn-large btn-primary pull-right"> @Resources.Product.Add_to_cart <i class=" icon-shopping-cart"></i></a>
+                </div>
+            </div>
+        </form>
+
+
+        <hr class="soft">
+    </div>
+
+    <div class="span9">
+        <ul id="productDetail" class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">@Resources.Product.Product_Details</a></li>
+            <li class=""><a href="#profile" data-toggle="tab">@Resources.Product.Related_Products</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="home">
+                <p>@Html.Raw(product.Description)</p>
+            </div>
+            <div class="tab-pane fade" id="profile">
+                <div id="myTab" class="pull-right">
+                    <a href="#listView" data-toggle="tab"><span class="btn btn-large"><i class="icon-list"></i></span></a>
+                    <a href="#blockView" data-toggle="tab"><span class="btn btn-large btn-primary"><i class="icon-th-large"></i></span></a>
+                </div>
+                <br class="clr">
+                <hr class="soft">
+                <div class="tab-content">
+                    <div class="tab-pane" id="listView">
+                        @foreach (var p in @ViewBag.relatedProducts)
+                        {
+                            Product pr = (Product)p;
+                            Photo mainPhotoRt = pr.Photos.SingleOrDefault(pro => pro.Main && pro.Status);
+                            <div class="row">
+                                <div class="span2">
+                                    <img src="~/Content/User/Images/@(mainPhotoRt != null ? mainPhotoRt.Name : "no-image.png")" />
+                                </div>
+                                <div class="span4">
+                                    <h5>@p.Name </h5>
+                                    <p>
+                                        @Resources.Home.Sold_By: <a href="@Url.Action("Detail", "Vendors", new { id = product.Vendor.Id })">@product.Vendor.Name</a>
+                                    </p>
+                                    
+                                </div>
+                                <div class="span3 alignR">
+                                    <form class="form-horizontal qtyFrm">
+                                        <h3> @product.Price.ToString("c")</h3>
+                                        
+                                        <div class="btn-group">
+                                            <a href="@Url.Action("Buy", "Cart", new { id = p.Id })" class="btn btn-large btn-primary"> @Resources.Home.Add_to <i class=" icon-shopping-cart"></i></a>
+                                            <a href="@Url.Action("Detail", "Product", new { id = p.Id })" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <hr class="soft">
+                        }
+                    </div>
+                    <div class="tab-pane active" id="blockView">
+                        <ul class="thumbnails">
+                            @foreach (var p in @ViewBag.relatedProducts)
+                            {
+                                Product pr = (Product)p;
+                                Photo mainPhotoRt = pr.Photos.SingleOrDefault(pro => pro.Main && pro.Status);
+                                <li class="span3">
+                                    <div class="thumbnail">
+                                        <a href="@Url.Action("Detail", "Product", new { id = p.Id })"><img src="~/Content/User/Images/@(mainPhotoRt != null ? mainPhotoRt.Name : "no-image.png")" /></a>
+                                        <div class="caption">
+                                            <h5>@p.Name</h5>
+                                            <p>
+                                               @Resources.Home.Sold_By: <a href="@Url.Action("Detail", "Vendors", new { id = product.Vendor.Id })">@product.Vendor.Name</a>
+                                            </p>
+                                            <h4 style="text-align:center">
+                                                <a class="btn" href="@Url.Action("Detail", "Product", new { id = p.Id })"> <i class="icon-zoom-in"></i></a> 
+                                                <a class="btn" href="@Url.Action("Buy", "Cart", new { id = p.Id })">@Resources.Home.Add_to <i class="icon-shopping-cart"></i></a> 
+                                                <a class="btn btn-primary" href="@Url.Action("Detail", "Product", new { id = p.Id })">@p.Price.ToString("c")</a></h4>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                        <hr class="soft">
+                    </div>
+                </div>
+                <br class="clr">
+            </div>
+        </div>
+    </div>
+</div>

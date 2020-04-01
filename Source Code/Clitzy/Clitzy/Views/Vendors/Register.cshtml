@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@model Clitzy.Models.Vendor
+
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("Index", "Home")">@Resources.UserTemplate.Home</a> <span class="divider">/</span></li>
+    <li class="active">@Resources.Vendor.Vendor_Register</li>
+</ul>
+<h3>@Resources.Vendor.Vendor_Information</h3>
+<hr class="soft">
+@using (Html.BeginForm("Register", "Vendors", FormMethod.Post, new { @class = "form-inline", enctype = "multipart/form-data" }))
+{
+    <fieldset>
+        @TempData["message"]
+
+        <div class="control-group">
+            <label class="control-label" for="textarea">@(Resources.Vendor.Username)*</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Username, new { @class = "input-xxlarge", required = "required", placeholder = Resources.Vendor.Username })
+                <br />
+                @Html.ValidationMessageFor(model => model.Username)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="password">@(Resources.Vendor.Password)*</label>
+            <div class="controls">
+                @Html.PasswordFor(model => model.Password, new { @class = "input-xxlarge", required = "required", placeholder = Resources.Vendor.Password_validate_message, title = Resources.Vendor.Password_validate_message })
+                <br />
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="textarea">@(Resources.Vendor.Name)*</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Name, new { @class = "input-xxlarge", required = "required", placeholder = Resources.Vendor.Name })
+                <br />
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="textarea">@(Resources.Vendor.Address)*</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Address, new { @class = "input-xxlarge", required = "required", placeholder = Resources.Vendor.Address })
+                <br />
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="textarea">@(Resources.Vendor.Email)*</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Email, new { @class = "input-xxlarge", required = "required", placeholder = "Email", type = Resources.Vendor.Email })
+                <br />
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="textarea">@(Resources.Vendor.Phone)</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Phone, new { @class = "input-xxlarge", placeholder = Resources.Vendor.Phone, type = "text" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="textarea">@(Resources.Vendor.Logo)</label>
+            <div class="controls">
+                <input type="file" name="logo" accept="image/*" />
+                @if (ViewBag.errorPhoto != null)
+                {
+                    <br />
+                    <span style="color: red">@ViewBag.errorPhoto</span>
+                }
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">@(Resources.Vendor.Save)</button>
+
+    </fieldset>
+}
+

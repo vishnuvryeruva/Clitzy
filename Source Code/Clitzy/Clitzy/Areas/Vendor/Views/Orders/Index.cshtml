@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Vendor/Views/Shared/_LayoutPage.cshtml";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Orders</h3>
+                </div>
+                <!-- /.box-header -->
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        @TempData["error"]
+                    </div>
+                }
+                <div class="box-body">
+                    <div id="example1_wrapper"
+                         class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example1"
+                                       class="table table-bordered table-striped dataTable">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="no-sort">Id</th>
+                                            <th class="no-sort">Name</th>
+                                            <th>Date Creation</th>
+                                            <th>Customer Name</th>
+                                            <th class="no-sort">Order Status</th>
+                                            <th class="no-sort">Payment</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var order in ViewBag.orders)
+                                        {
+                                            <tr>
+                                                <td>@order.Id</td>
+                                                <td>@order.Name</td>
+                                                <td>@order.DateCreation.ToString("MM/dd/yyyy")</td>
+                                                <td>@order.Account.FullName</td>
+                                                <td>@order.OrderStatu.Name</td>
+                                                <td>@(order.Payment != null ? order.Payment.Name : "Paid")</td>
+                                                <td>
+                                                    <a href="@Url.Action("Detail", "Orders", new { id = order.Id })">View Detail</a>                       
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>

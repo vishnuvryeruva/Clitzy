@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Product of " + ViewBag.product.Name;
+    Layout = "~/Areas/Vendor/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using Clitzy.Models;
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Photos of @ViewBag.product.Name</h3>
+                </div>
+                <!-- /.box-header -->
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        @TempData["error"]
+                    </div>
+                }
+                <div class="box-body">
+                    <div id="example1_wrapper"
+                         class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example1"
+                                       class="table table-bordered table-striped dataTable">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="no-sort">Id</th>
+                                            <th class="no-sort">Photo</th>
+                                            <th class="no-sort">Product Name</th>
+                                            <th class="no-sort">Main Image</th>
+                                            <th class="no-sort">Status</th>
+                                            <th class="no-sort">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var photo in ViewBag.product.Photos)
+                                        {  
+                                            <tr>
+                                                <td>@photo.Id</td>
+                                                <td><img src="~/Content/User/Images/@photo.Name" width="120" /></td>
+                                                <td>@photo.Product.Name</td>
+                                                <td>
+                                                    @if (photo.Main)
+                                                    {
+                                                        <span>Main</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="@Url.Action("MainPhoto", "Product", new { id = photo.Id })">Select Main</a>
+                                                    }
+                                                    </td>                     
+                                                <td>
+                                                    <a href="@Url.Action("StatusPhoto", "Product", new { id = photo.Id })">@(photo.Status ? "Show" : "Hide")</a>
+                                                </td>
+                                                <td>
+                                                    <a href="@Url.Action("EditPhoto", "Product", new { id = photo.Id })">Edit</a>  
+                                                    | 
+                                                    <a href="@Url.Action("DeletePhoto", "Product", new { id = photo.Id })" onclick="return confirm('Are you sure?')">Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>

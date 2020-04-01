@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using Clitzy.Models;
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Customers</h3>
+                </div>
+                <!-- /.box-header -->
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        @TempData["error"]
+                    </div>
+                }
+                <div class="box-body">
+                    <div id="example1_wrapper"
+                         class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example1"
+                                       class="table table-bordered table-striped dataTable">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="no-sort">Id</th>
+                                            <th class="no-sort">Username</th>
+                                            <th class="no-sort">Name</th>
+                                            <th class="no-sort">Logo</th>
+                                            <th class="no-sort">Address</th>
+                                            <th class="no-sort">Email</th>
+                                            <th class="no-sort">Phone</th>
+                                            <th class="no-sort">MemberShip</th>
+                                            <th class="no-sort">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var vendor in ViewBag.vendors)
+                                        {
+                                            <tr>
+                                                <td>@vendor.Id</td>
+                                                <td>@vendor.Username</td>
+                                                <td>@vendor.Name</td>
+                                                <td>
+                                                    <img src="~/Content/User/Images/@vendor.Logo" width="50" />
+                                                </td>
+                                                <td>@vendor.Address</td>
+                                                <td>@vendor.Email</td>
+                                                <td>@vendor.Phone</td>
+                                                <td>
+                                                    <a href="@Url.Action("Membership", "Account", new { id = vendor.Id })">Orders List</a>
+                                                </td>
+                                                <td>
+                                                    <a href="@Url.Action("StatusVendor", "Account", new { id = vendor.Id })">@(vendor.Status ? "Active" : "InActive")</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>

@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customer/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using Clitzy.Models;
+
+<section class="invoice">
+    <!-- title row -->
+    <div class="row">
+        <div class="col-xs-12">
+            <h2 class="page-header">
+                <i class="fa fa-globe"></i> Clitzy, Inc.
+                <small class="pull-right">Date: @ViewBag.order.DateCreation.ToString("MM/dd/yyyy")</small>
+            </h2>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+            Customer Info
+            <address>
+                <strong>@ViewBag.order.Account.FullName</strong><br>
+                @ViewBag.order.Account.Address<br>
+                Phone: @ViewBag.order.Account.Phone<br>
+                Email: @ViewBag.order.Account.Email
+            </address>
+        </div>
+        <!-- /.col -->
+        
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+            <b>Order Info</b><br>
+            <b>Order ID:</b> @ViewBag.order.Id<br>
+            <b>Payment Due:</b> @ViewBag.order.DateCreation.ToString("MM/dd/yyyy")<br>
+            <b>Order Status:</b> @ViewBag.order.OrderStatu.Name<br>
+            <b>Payment:</b> @(ViewBag.order.Payment != null ? ViewBag.order.Payment.Name : "")
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <!-- Table row -->
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Photo</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        decimal s = 0;
+                    }
+                    @foreach (var orderDetail in ViewBag.order.OrdersDetails)
+                    {
+                        Product pr = (Product)orderDetail.Product;
+                        Photo mainPhoto = pr.Photos.SingleOrDefault(p => p.Main == true);
+                        s += orderDetail.Price * @orderDetail.Quantity;
+                        <tr>
+                            <td>@orderDetail.Product.Id</td>
+                            <td>@orderDetail.Product.Name</td>
+                            <td><img src="~/Content/User/Images/@(mainPhoto != null ? mainPhoto.Name : "no-image.png")" width="80" /></td>
+                            <td>@orderDetail.Price.ToString("c")</td>
+                            <td>@orderDetail.Quantity</td>
+                            <td>@((orderDetail.Price * @orderDetail.Quantity).ToString("c"))</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" align="right">Total</td>
+                        <td>@s.ToString("c")</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- /.col -->
+    </div>
+    
+</section>

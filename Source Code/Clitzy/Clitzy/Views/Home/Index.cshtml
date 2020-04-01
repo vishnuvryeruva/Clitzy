@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using Clitzy.Models;
+
+<h3>@Resources.Home.Latest_Products </h3>
+
+<ul class="thumbnails">
+    @foreach (var product in ViewBag.latestProducts)
+    {
+        Product pr = (Product)product;
+        Photo mainPhoto = pr.Photos.SingleOrDefault(p => p.Main && p.Status);
+        <li class="span3">
+            <div class="thumbnail">
+                <a href="@Url.Action("Detail", "Product", new { id = product.Id })"><img src="~/Content/User/Images/@(mainPhoto != null ? mainPhoto.Name : "no-image.png")" /></a>
+                <div class="caption">
+                    <h5>@product.Name</h5>
+                    <p>
+                        @Resources.Home.Sold_By: <a href="@Url.Action("Detail", "Vendors", new { id = product.Vendor.Id })"><b> @product.Vendor.Name</b></a>
+                    </p>
+
+                    <h4 style="text-align:center">
+                        <a class="btn" href="@Url.Action("Detail", "Product", new { id = product.Id })"> <i class="icon-zoom-in"></i></a> 
+                        <a class="btn" href="@Url.Action("Buy", "Cart", new { id = product.Id })">@Resources.Home.Add_to <i class="icon-shopping-cart"></i></a> 
+                        <a class="btn btn-primary" href="@Url.Action("Detail", "Product", new { id = product.Id })">@product.Price.ToString("c")</a>
+                    </h4>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+
+<h3>@Resources.Home.Mosted_View_Products </h3>
+<ul class="thumbnails">
+    @foreach (var product in ViewBag.mostedViewedProducts)
+    {
+        Product pr = (Product)product;
+        Photo mainPhoto = pr.Photos.SingleOrDefault(p => p.Main && p.Status);
+        <li class="span3">
+            <div class="thumbnail">
+                <a href="@Url.Action("Detail", "Product", new { id = product.Id })"><img src="~/Content/User/Images/@(mainPhoto != null ? mainPhoto.Name : "no-image.png")" /></a>
+                <div class="caption">
+                    <h5>@product.Name</h5>
+                    <p>
+                        @Resources.Home.Sold_By: <a href="@Url.Action("Detail", "Vendors", new { id = product.Vendor.Id })"> @product.Vendor.Name</a>
+                    </p>
+
+                    <h4 style="text-align:center">
+                        <a class="btn" href="@Url.Action("Detail", "Product", new { id = product.Id })"> <i class="icon-zoom-in"></i></a> 
+                        <a class="btn" href="@Url.Action("Buy", "Cart", new { id = product.Id })">@Resources.Home.Add_to <i class="icon-shopping-cart"></i></a> 
+                        <a class="btn btn-primary" href="@Url.Action("Detail", "Product", new { id = product.Id })">@product.Price.ToString("c")</a>
+                    </h4>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+
+<h3>@Resources.Home.Best_Seller_Products </h3>
+<ul class="thumbnails">
+    @foreach (var product in ViewBag.bestSellersProducts)
+    {
+        Product pr = (Product)product;
+        Photo mainPhoto = pr.Photos.SingleOrDefault(p => p.Main && p.Status);
+        <li class="span3">
+            <div class="thumbnail">
+                <a href="@Url.Action("Detail", "Product", new { id = product.Id })"><img src="~/Content/User/Images/@(mainPhoto != null ? mainPhoto.Name : "no-image.png")" /></a>
+                <div class="caption">
+                    <h5>@product.Name</h5>
+                    <p>
+                        @Resources.Home.Sold_By: <a href="@Url.Action("Detail", "Vendors", new { id = product.Vendor.Id })"> @product.Vendor.Name</a>
+                    </p>
+
+                    <h4 style="text-align:center">
+                        <a class="btn" href="@Url.Action("Detail", "Product", new { id = product.Id })"> <i class="icon-zoom-in"></i></a> 
+                        <a class="btn" href="@Url.Action("Buy", "Cart", new { id = product.Id })">@Resources.Home.Add_to <i class="icon-shopping-cart"></i></a> 
+                        <a class="btn btn-primary" href="@Url.Action("Detail", "Product", new { id = product.Id })">@product.Price.ToString("c")</a>
+                    </h4>
+                </div>
+            </div>
+        </li>
+    }
+</ul>

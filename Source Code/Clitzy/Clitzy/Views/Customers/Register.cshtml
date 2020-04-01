@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@model Clitzy.Models.Account
+
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("Index", "Home")">@Resources.UserTemplate.Home</a> <span class="divider">/</span></li>
+    <li class="active">@Resources.Customer.Customer_Register</li>
+</ul>
+<h3>@Resources.Customer.Customer_Information</h3>
+<hr class="soft">
+@using (Html.BeginForm("Register", "Customers", FormMethod.Post, new { @class = "form-inline" }))
+{
+    <fieldset>
+        @TempData["message"]
+
+        <div class="control-group">
+            <label class="control-label" for="textarea">@(Resources.Customer.Username)*</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Username, new { @class = "input-xxlarge", required = "required", placeholder = Resources.Customer.Username })
+                <br />
+                @Html.ValidationMessageFor(model => model.Username)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="password">@(Resources.Customer.Password)*</label>
+            <div class="controls">
+                @Html.PasswordFor(model => model.Password, new { @class = "input-xxlarge", required = "required", placeholder = Resources.Customer.Password_validate_message, title = Resources.Customer.Password_validate_message })
+                <br />
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="textarea">@(Resources.Customer.Full_Name)*</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.FullName, new { @class = "input-xxlarge", required = "required", placeholder = Resources.Customer.Full_Name })
+                <br />
+                @Html.ValidationMessageFor(model => model.FullName)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="textarea">@(Resources.Customer.Address)*</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Address, new { @class = "input-xxlarge", required = "required", placeholder = Resources.Customer.Address })
+                <br />
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="textarea">@(Resources.Customer.Email)*</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Email, new { @class = "input-xxlarge", required = "required", placeholder = Resources.Customer.Email, type = "email" })
+                <br />
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="textarea">@Resources.Customer.Phone</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Phone, new { @class = "input-xxlarge", placeholder = Resources.Customer.Phone, type = "phone" })
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">@Resources.Customer.Save</button>
+
+    </fieldset>
+}
+

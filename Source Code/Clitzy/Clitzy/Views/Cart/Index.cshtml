@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using Clitzy.Models;
+@using Clitzy.Security;
+
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("Index", "Home")">@Resources.UserTemplate.Home</a> <span class="divider">/</span></li>
+    <li class="active"> @Resources.Cart.PageTitle</li>
+</ul>
+<h3>  @Resources.Cart.PageTitle [ <small>@(Session["cart"] != null ? ((List<Item>)Session["cart"]).Count : 0) @(Resources.Cart.Item)(s) </small>]<a href="@Url.Action("Index", "Home")" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> @Resources.Cart.Continue_Shopping </a></h3>
+<hr class="soft">
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Resources.Cart.Option</th>
+            <th>@Resources.Cart.Id</th>
+            <th>@Resources.Cart.Name</th>
+            <th>@Resources.Cart.Photo</th>
+            <th>@Resources.Cart.Vendor_Name</th>
+            <th>@Resources.Cart.Quantity</th>
+            <th>@Resources.Cart.Price</th>
+            <th>@Resources.Cart.Total</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Session["cart"] != null)
+        {
+            List<Item> cart = (List<Item>)Session["cart"];
+            foreach (var item in cart)
+            {
+                Product pr = (Product)item.product;
+                Photo mainPhoto = pr.Photos.SingleOrDefault(p => p.Main && p.Status);
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Remove", "Cart", new { id = item.product.Id })" class="btn btn-danger"><i class="icon-remove icon-white"></i></a>
+                    </td>
+                    <td>
+                        @item.product.Id
+                    </td>
+                    <td>
+                        @item.product.Name
+                    </td>
+                    <td>
+                        <img src="~/Content/User/Images/@(mainPhoto != null ? mainPhoto.Name : "no-image.png")" width="60" />
+                    </td>
+                    <td>
+                        @item.product.Vendor.Name
+                    </td>
+                    <td>
+                        <form method="post" action="@Url.Action("Update", "Cart")">
+                            <div class="input-append">
+                                <input class="span1" style="max-width:50px" placeholder="1" id="appendedInputButtons" size="16" type="number" min="1" value="@item.quantity" name="quantity">
+                                <button class="btn" type="submit"><i class="icon-save"></i></button>
+                                <input type="hidden" name="productId" value="@item.product.Id" />
+                            </div>
+                        </form>
+                    </td>
+                    <td>@item.product.Price.ToString("c")</td>
+                    <td>
+                        @((item.product.Price * item.quantity).ToString("c"))
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="7" style="text-align:right">@Resources.Cart.Total_Price:	</td>
+                <td class="label label-important" style="display:block"> <strong> @(cart.Sum(i => i.product.Price * i.quantity).ToString("c")) </strong></td>
+                
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+<a href="@Url.Action("Index", "Home")" class="btn btn-large"><i class="icon-arrow-left"></i> @Resources.Cart.Continue_Shopping </a>
+
+@if (SessionPersister.account == null)
+{
+    <a href="@Url.Action("Login", "Customer")" class="btn btn-large pull-right">@Resources.Cart.Please_login_before_checkout <i class="icon-arrow-right"></i></a>
+}
+else
+{
+    var account = SessionPersister.account;
+    if (account is Account && !((Clitzy.Models.Account)account).IsAdmin)
+    {
+        <a href="@Url.Action("Save", "Cart")" class="btn btn-large pull-right">@Resources.Cart.Send_Your_Orders_to_Vendors <i class="icon-save"></i></a>
+    }
+}
+

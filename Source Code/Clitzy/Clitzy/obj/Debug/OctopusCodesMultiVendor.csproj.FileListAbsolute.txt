@@ -1,0 +1,66 @@
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\OctopusCodesMultiVendor.dll.config
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\OctopusCodesMultiVendor.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\OctopusCodesMultiVendor.pdb
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\BCrypt.Net.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\EntityFramework.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\EntityFramework.SqlServer.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\PagedList.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\PagedList.Mvc.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Helpers.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Mvc.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Razor.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Webpages.Deployment.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Webpages.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Webpages.Razor.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\BCrypt.Net.xml
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\EntityFramework.xml
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\EntityFramework.SqlServer.xml
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\PagedList.xml
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\PagedList.Mvc.xml
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Razor.xml
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Webpages.xml
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Webpages.Deployment.xml
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Webpages.Razor.xml
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Helpers.xml
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Mvc.xml
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\OctopusCodesMultiVendor.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\OctopusCodesMultiVendor.pdb
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\en\OctopusCodesMultiVendor.resources.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\OctopusCodesMultiVendor.App_GlobalResources.Cart.en.resources
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\OctopusCodesMultiVendor.csproj.GenerateResource.Cache
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\en\OctopusCodesMultiVendor.resources.dll
+D:\OctopusCodes\Projects\NET\OctopusCodes - Multi Vendor - Tri Phan\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\OctopusCodesMultiVendor.csprojResolveAssemblyReference.cache
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\OctopusCodesMultiVendor.dll.config
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\OctopusCodesMultiVendor.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\OctopusCodesMultiVendor.pdb
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\en\OctopusCodesMultiVendor.resources.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\BCrypt.Net.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\EntityFramework.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\EntityFramework.SqlServer.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\PagedList.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\PagedList.Mvc.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Helpers.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Mvc.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Razor.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Webpages.Deployment.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Webpages.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Webpages.Razor.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\BCrypt.Net.xml
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\EntityFramework.xml
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\EntityFramework.SqlServer.xml
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\PagedList.xml
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\PagedList.Mvc.xml
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Razor.xml
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Webpages.xml
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Webpages.Deployment.xml
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Webpages.Razor.xml
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Helpers.xml
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\bin\System.Web.Mvc.xml
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\OctopusCodesMultiVendor.csprojAssemblyReference.cache
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\OctopusCodesMultiVendor.App_GlobalResources.Cart.en.resources
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\OctopusCodesMultiVendor.csproj.GenerateResource.cache
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\en\OctopusCodesMultiVendor.resources.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\OctopusCodesMultiVendor.csproj.CopyComplete
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\OctopusCodesMultiVendor.dll
+C:\Users\vishn\Downloads\Main\Source Codes\OctopusCodesMultiVendor\OctopusCodesMultiVendor\obj\Debug\OctopusCodesMultiVendor.pdb

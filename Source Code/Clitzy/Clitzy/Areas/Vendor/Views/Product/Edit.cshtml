@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Add Product";
+    Layout = "~/Areas/Vendor/Views/Shared/_LayoutPage.cshtml";
+}
+
+@model Clitzy.Models.ViewModels.ProductViewModel
+
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-8">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit Product</h3>
+                </div>
+                <!-- /.box-header --> <!-- form start -->
+                @if (ViewBag.error != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        ViewBag.error
+                    </div>
+                }
+
+                @using (Html.BeginForm("Edit", "Product", FormMethod.Post))
+                {
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <label for="name">
+                                Name
+                            </label>
+                            @Html.TextBoxFor(model => model.product.Name, new { @class = "form-control", required = "required", placeholder = "Name" })
+                            @Html.ValidationMessageFor(model => model.product.Name)
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">
+                                Price
+                            </label>
+                            @Html.TextBoxFor(model => model.product.Price, new { @class = "form-control", required = "required", placeholder = "Price", type = "number", min = "0" })
+                            @Html.ValidationMessageFor(model => model.product.Price)
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quantity">
+                                Quantity
+                            </label>
+                            @Html.TextBoxFor(model => model.product.Quantity, new { @class = "form-control", required = "required", placeholder = "Quantity", type = "number", min = "0" })
+                            @Html.ValidationMessageFor(model => model.product.Quantity)
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">
+                                Description
+                            </label>
+                            @Html.TextAreaFor(model => model.product.Description, new { @class = "form-control", placeholder = "Description" })
+                            @Html.ValidationMessageFor(model => model.product.Description)
+                        </div>
+
+                        <div class="form-group">
+                            <label for="parent">
+                                Category
+                            </label>
+                            @Html.DropDownListFor(model => model.product.CategoryId, Model.CategoriesMultiLevel, new { @class = "form-control" })
+                        </div>
+                                              
+
+                        <div class="checkbox">
+                            <label>                                
+                                @Html.CheckBoxFor(model => model.product.Status) Status
+                            </label>
+                        </div>
+
+                       
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                    
+                    @Html.HiddenFor(model => model.product.Id)
+                    
+                }
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
+</section>

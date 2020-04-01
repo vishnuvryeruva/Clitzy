@@ -1,0 +1,13 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<h2>
+    @Resources.UserTemplate.Sorry
+    <br />
+    @Resources.UserTemplate.Error :
+</h2>
+@Model.Exception.Message
+

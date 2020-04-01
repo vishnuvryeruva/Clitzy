@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using Clitzy.Models;
+@model PagedList.IPagedList<Clitzy.Models.Product>
+@using PagedList.Mvc;
+
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("Index", "Home")">@Resources.UserTemplate.Home</a> <span class="divider">/</span></li>
+    <li class="active">@Resources.Vendor.Vendor_Info</li>
+</ul>
+<h3> @ViewBag.vendor.Name <small class="pull-right"> @ViewBag.vendor.Products.Count @Resources.Vendor.products_are_available </small></h3>
+<hr class="soft">
+
+<div class="row">
+
+    <div id="gallery" class="span3">
+        <a href="~/Content/User/images/@ViewBag.vendor.Logo" title="@ViewBag.vendor.Name">
+            <img src="~/Content/User/images/@ViewBag.vendor.Logo" style="width:100%" alt="@ViewBag.vendor.Name">
+        </a>
+    </div>
+    <div class="span6">
+        <h5>@Resources.Vendor.Address: </h5> @ViewBag.vendor.Address
+        <h4>@Resources.Vendor.Email: </h4> @ViewBag.vendor.Email
+        <h4>@Resources.Vendor.Phone: </h4> @ViewBag.vendor.Phone
+        <hr class="soft">
+        <a class="btn btn-small pull-left" href="@Url.Action("SendMessage", "Vendors", new { id = @ViewBag.vendor.Id })">@Resources.Vendor.Send_Messages_to_Vendor</a>
+        <a style="margin-left: 10px;" class="btn btn-small pull-left" href="@Url.Action("GiveReview", "Vendors", new { id = @ViewBag.vendor.Id })">@Resources.Vendor.Give_your_review_for_vendor</a>
+        <br class="clr">
+        <a href="#" name="detail"></a>
+
+    </div>
+
+</div>
+
+<hr class="soft">
+<div class="span9">
+    <ul id="productDetail" class="nav nav-tabs">
+        <li class=""><a href="#Reviews" data-toggle="tab">@Resources.Vendor.Reviews</a></li>
+        <li class="active"><a href="#Products" data-toggle="tab">@Resources.Vendor.Products_of_Vendor</a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade " id="Reviews">
+            @foreach (var comment in ViewBag.comments)
+            {
+                <h4>@comment.Account.FullName</h4>
+                <p>@comment.Detail</p>
+                <hr class="soft">
+            }
+        </div>
+        <div class="tab-pane fade active in" id="Products">
+            <div id="myTab" class="pull-right">
+                <a href="#listView" data-toggle="tab"><span class="btn btn-large"><i class="icon-list"></i></span></a>
+                <a href="#blockView" data-toggle="tab"><span class="btn btn-large btn-primary"><i class="icon-th-large"></i></span></a>
+            </div>
+            <br class="clr">
+            <hr class="soft">
+            <div class="tab-content">
+                <div class="tab-pane" id="listView">
+                    @foreach (var product in Model)
+                    {
+                        Product pr = (Product)product;
+                        Photo mainPhoto = pr.Photos.SingleOrDefault(p => p.Main && p.Status);
+                        <div class="row">
+                            <div class="span2">
+                                <img src="~/Content/User/Images/@(mainPhoto != null ? mainPhoto.Name : "no-image.png")" />
+                            </div>
+                            <div class="span4">
+                                <h5>@product.Name </h5>
+                                <p>
+                                    @Resources.Home.Sold_By: <a href="@Url.Action("Detail", "Vendors", new { id = product.Vendor.Id })">@product.Vendor.Name</a>
+                                </p>
+
+                            </div>
+                            <div class="span3 alignR">
+                                <form class="form-horizontal qtyFrm">
+                                    <h3>@product.Price.ToString("c")</h3>
+
+                                    <div class="btn-group">
+                                        <a href="@Url.Action("Buy", "Cart", new { id = product.Id })" class="btn btn-large btn-primary"> @Resources.Home.Add_to <i class=" icon-shopping-cart"></i></a>
+                                        <a href="@Url.Action("Detail", "Vendors", new { id = product.Vendor.Id })" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <hr class="soft">
+                    }
+                    <div class="pagination">
+                        @Html.PagedListPager(Model, page => Url.Action("Detail", "Vendors", new { page, pageSize = Model.PageSize, id = ViewBag.vendor.Id }))
+                    </div>
+                </div>
+                <div class="tab-pane active" id="blockView">
+                    <ul class="thumbnails">
+                        @foreach (var product in Model)
+                        {
+                            Product pr = (Product)product;
+                            Photo mainPhoto = pr.Photos.SingleOrDefault(p => p.Main && p.Status);
+                            <li class="span3">
+                                <div class="thumbnail">
+                                    <a href="@Url.Action("Detail", "Product", new { id = product.Id })"><img src="~/Content/User/Images/@(mainPhoto != null ? mainPhoto.Name : "no-image.png")" /></a>
+                                    <div class="caption">
+                                        <h5>@product.Name</h5>
+                                        <p>
+                                            @Resources.Home.Sold_By: <a href="@Url.Action("Detail", "Vendors", new { id = product.Vendor.Id })">@product.Vendor.Name</a>
+                                        </p>
+                                        <h4 style="text-align:center">
+                                            <a class="btn" href="@Url.Action("Detail", "Product", new { id = product.Id })"> <i class="icon-zoom-in"></i></a> 
+                                            <a class="btn" href="@Url.Action("Buy", "Cart", new { id = product.Id })">@Resources.Home.Add_to <i class="icon-shopping-cart"></i></a> 
+                                            <a class="btn btn-primary" href="@Url.Action("Detail", "Product", new { id = product.Id })">@product.Price.ToString("c")</a></h4>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                    <div class="pagination">
+                        @Html.PagedListPager(Model, page => Url.Action("Detail", "Vendors", new { page, pageSize = Model.PageSize, id = ViewBag.vendor.Id }))
+                    </div>
+                    <hr class="soft">
+                </div>
+            </div>
+            
+            <br class="clr">
+        </div>
+    </div>
+</div>
